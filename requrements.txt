@@ -3,3 +3,5 @@ numpy
 pyarrow
 faker
 pathlib
+boto3
+awscli
