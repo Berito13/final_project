@@ -12,15 +12,15 @@ variable "lambda_role_arn" {
 }
 
 variable "source_bucket" {
-  description = "Source S3 bucket (lasha1)"
+  description = "Source S3 bucket (exam-bronze)"
   type        = string
-  default     = "lasha1"
+  default     = "exam-bronze"
 }
 
 variable "destination_bucket" {
-  description = "Destination S3 bucket (lasha2)"
+  description = "Destination S3 bucket (exam-silver)"
   type        = string
-  default     = "lasha2"
+  default     = "exam-silver"
 }
 
 variable "s3_filter_prefix" {

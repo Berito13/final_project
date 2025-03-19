@@ -1,15 +1,15 @@
 # iam/variables.tf
 
 variable "source_bucket" {
-  description = "Source S3 bucket name (lasha1)"
+  description = "Source S3 bucket name (exam-bronze)"
   type        = string
-  default     = "lasha1"
+  default     = "exam-bronze"
 }
 
 variable "destination_bucket" {
-  description = "Destination S3 bucket name (lasha2)"
+  description = "Destination S3 bucket name (exam-silver)"
   type        = string
-  default     = "lasha2"
+  default     = "exam-silver"
 }
 
 variable "tags" {
