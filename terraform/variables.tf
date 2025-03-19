@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "s3_bucket_names" {
   description = "S3 bucket-ების სახელების სია"
   type        = list(string)
-  default     = ["exam-bronze", "exam-silver", "exam-gold"]
+  default     = ["final-project-bronze-bucket", "final-project-silver-bucket", "final-project-gold-bucket"]
 }
 
 variable "environments" {
