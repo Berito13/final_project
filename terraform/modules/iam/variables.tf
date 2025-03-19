@@ -20,3 +20,9 @@ variable "tags" {
     Owner     = "Lasha"
   }
 }
+
+variable "lambda_role_arn" {
+  description = "Lambda ფუნქციის IAM როლის ARN"
+  type        = string
+  default     = ""  # თუნდაც შეიქმნას და გამოიქცეს, ჩვენ ეს ვერ გამოვიყენებთ, რადგან IAM როლი უშუალოდ აისახება output-ში
+}

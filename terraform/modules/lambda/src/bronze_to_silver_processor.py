@@ -55,14 +55,3 @@ def lambda_handler(event, context):
             'body': f"Error processing file: {str(e)}"
         }
 
-if __name__ == "__main__":
-    # Example event data simulating the trigger event in Lambda
-    event = {
-        'bucket_name': 'final-project',  # Your actual bucket name without "-silver"
-        'file_path': 'transactions.parquet'  # Sample file path from the Bronze bucket
-    }
-    # context can be simulated as None for local testing
-    context = None
-
-    response = lambda_handler(event, context)
-    print(response)

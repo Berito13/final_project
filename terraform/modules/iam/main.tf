@@ -1,5 +1,3 @@
-# iam/main.tf
-
 # IAM როლი Lambda ფუნქციისთვის
 resource "aws_iam_role" "lambda_role" {
   name = "s3_processing_lambda_role"
@@ -19,6 +17,8 @@ resource "aws_iam_role" "lambda_role" {
 
   tags = var.tags
 }
+
+# IAM როლის ARN-ს გამოსაყენებლად
 
 # პოლისი S3-სთან სამუშაოდ
 resource "aws_iam_policy" "s3_access_policy" {

@@ -1,9 +1,6 @@
-# lambda/variables.tf
-
 variable "lambda_function_name" {
   description = "Lambda ფუნქციის სახელი"
   type        = string
-  default     = "bronze_to_silver_processor"
 }
 
 variable "lambda_role_arn" {
@@ -12,15 +9,13 @@ variable "lambda_role_arn" {
 }
 
 variable "source_bucket" {
-  description = "Source S3 bucket (exam-bronze)"
+  description = "Source S3 bucket"
   type        = string
-  default     = "exam-bronze"
 }
 
 variable "destination_bucket" {
-  description = "Destination S3 bucket (exam-silver)"
+  description = "Destination S3 bucket"
   type        = string
-  default     = "exam-silver"
 }
 
 variable "s3_filter_prefix" {
