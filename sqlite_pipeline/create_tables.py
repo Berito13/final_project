@@ -1,6 +1,10 @@
 import sqlite3
+import os
 
-def create_connection(db_path=r'C:\Users\Administrator\PycharmProjects\final_project\data\data_warehouse.db'):
+
+BASE_DIR = os.getcwd()
+database_path = os.path.join(BASE_DIR, "data", 'data_warehouse.db')
+def create_connection(db_path=database_path):
     """Create a database connection to SQLite3"""
     conn = sqlite3.connect(db_path)
     return conn

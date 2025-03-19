@@ -3,14 +3,18 @@ import logging
 from sqlite_pipeline.bronze_layer import load_bronze_data
 from sqlite_pipeline.silver_layer import transform_silver_data
 from sqlite_pipeline.gold_layer import aggregate_transactions
+import os
 
+
+BASE_DIR = os.getcwd()
+database_path = os.path.join(BASE_DIR, "data", 'data_warehouse.db')
 # Configure logging
 logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     level=logging.INFO,
 )
 
-def create_connection(db_path=r'C:\Users\Administrator\PycharmProjects\final_project\data\data_warehouse.db'):
+def create_connection(db_path=database_path):
     """Create a database connection to SQLite3"""
     try:
         conn = sqlite3.connect(db_path)
@@ -23,9 +27,9 @@ def create_connection(db_path=r'C:\Users\Administrator\PycharmProjects\final_pro
 def main():
     try:
         # Define file paths for Parquet files
-        customers_parquet = r'C:\Users\Administrator\PycharmProjects\final_project\data/sample/customers.parquet'
-        transaction_types_parquet = r'C:\Users\Administrator\PycharmProjects\final_project\data/sample/transaction_types.parquet'
-        transactions_parquet = r'C:\Users\Administrator\PycharmProjects\final_project\data/sample/transactions.parquet'
+        customers_parquet = os.path.join(BASE_DIR, "data", "sample", "customers.parquet")
+        transaction_types_parquet = os.path.join(BASE_DIR, "data", "sample", "transaction_types.parquet")
+        transactions_parquet = os.path.join(BASE_DIR, "data", "sample", "transactions.parquet")
 
         # Establish database connection
         conn = create_connection()

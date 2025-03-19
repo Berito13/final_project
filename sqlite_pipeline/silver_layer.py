@@ -1,6 +1,11 @@
 import sqlite3
 import pandas as pd
 
+import os
+
+
+BASE_DIR = os.getcwd()
+database_path = os.path.join(BASE_DIR, "data", 'data_warehouse.db')
 def transform_silver_data(conn):
     """Transform and clean the data for the silver layer"""
     try:
@@ -19,6 +24,6 @@ def transform_silver_data(conn):
         print(f"Error transforming data for silver layer: {e}")
 
 if __name__ == "__main__":
-    conn = sqlite3.connect(r'C:\Users\Administrator\PycharmProjects\final_project\data\data_warehouse.db')
+    conn = sqlite3.connect(database_path)
     transform_silver_data(conn)
     conn.close()

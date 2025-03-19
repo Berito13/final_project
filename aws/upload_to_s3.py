@@ -3,6 +3,8 @@ import logging
 import os
 from datetime import datetime
 
+
+BASE_DIR = os.getcwd()
 # Set up logging
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -130,7 +132,7 @@ def main():
 
     # Upload the sample file
     data_lake.upload_sample_data(
-        r'C:\Users\Administrator\PycharmProjects\final_project\data\sample\transactions.parquet')
+        os.path.join(BASE_DIR, "data", "sample", "transactions.parquet"))
 
     # Display data lake info
     lake_info = data_lake.get_bucket_info()
