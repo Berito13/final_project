@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     try:
         # Get bucket name and file path from the event
         bucket_name = event.get('bucket_name', 'final-project')
-        file_path = event.get('file_path', 'raw/api_data/2025-03-15/transactions.parquet')
+        file_path = event.get('file_path', 'raw/api_data/transactions.parquet')
 
         # Step 1: Download the raw Parquet file from the Bronze bucket
         print(f"Downloading file from S3 bucket: {bucket_name}-bronze-bucket/{file_path}")
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     # Example event data simulating the trigger event in Lambda
     event = {
         'bucket_name': 'final-project',  # Your actual bucket name without "-silver"
-        'file_path': 'raw/api_data/2025-03-15/transactions.parquet'  # Sample file path from the Bronze bucket
+        'file_path': 'raw/api_data/transactions.parquet'  # Sample file path from the Bronze bucket
     }
     # context can be simulated as None for local testing
     context = None
