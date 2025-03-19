@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     try:
         # Get bucket name and file path from the event
         bucket_name = event.get('bucket_name', 'final-project')
-        file_path = event.get('file_path', 'raw/api_data/transactions.parquet')
+        file_path = event.get('file_path', 'transactions.parquet')
 
         # Step 1: Download the raw Parquet file from the Bronze bucket
         print(f"Downloading file from S3 bucket: {bucket_name}-bronze-bucket/{file_path}")
@@ -30,7 +30,7 @@ def lambda_handler(event, context):
         processed_data = processed_data.drop_duplicates()
 
         # Step 3: Create Silver bucket key
-        silver_key = f"processed/structured/{file_path.split('/')[-1].replace('.parquet', '_processed.parquet')}"
+        silver_key = f"{file_path.split('/')[-1].replace('.parquet', '_processed.parquet')}"
 
         # Step 4: Convert to Parquet format
         table = pa.Table.from_pandas(processed_data)
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     # Example event data simulating the trigger event in Lambda
     event = {
         'bucket_name': 'final-project',  # Your actual bucket name without "-silver"
-        'file_path': 'raw/api_data/transactions.parquet'  # Sample file path from the Bronze bucket
+        'file_path': 'transactions.parquet'  # Sample file path from the Bronze bucket
     }
     # context can be simulated as None for local testing
     context = None

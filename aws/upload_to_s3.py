@@ -77,27 +77,12 @@ class S3DataLake:
     def create_folder_structure(self):
         """Create the folder structure in the S3 buckets"""
         bronze_prefixes = [
-            "raw/api_data/",
-            "raw/database_exports/",
-            "raw/file_uploads/",
-            "raw/streaming_data/",
-            "archive/"
         ]
 
         silver_prefixes = [
-            "processed/structured/",
-            "processed/validated/",
-            "processed/enriched/",
-            "rejected/"
         ]
 
         gold_prefixes = [
-            "analytics/kpi_metrics/",
-            "analytics/ml_features/",
-            "reporting/daily/",
-            "reporting/weekly/",
-            "reporting/monthly/",
-            "dashboards/"
         ]
 
         for prefix in bronze_prefixes:
@@ -111,11 +96,11 @@ class S3DataLake:
 
         logger.info("Created folder structure in all buckets")
 
-    def upload_sample_data(self, local_file_path, source_type):
+    def upload_sample_data(self, local_file_path):
         """Upload sample data to bronze layer"""
         try:
             current_date = datetime.now().strftime("%Y-%m-%d")
-            bronze_key = f"raw/{source_type}/{os.path.basename(local_file_path)}"
+            bronze_key = f"{os.path.basename(local_file_path)}"
             self.s3_client.upload_file(local_file_path, self.bronze_bucket, bronze_key)
             logger.info(f"Uploaded {local_file_path} to s3://{self.bronze_bucket}/{bronze_key}")
             return bronze_key
@@ -145,7 +130,7 @@ def main():
 
     # Upload the sample file
     data_lake.upload_sample_data(
-        r'C:\Users\Administrator\PycharmProjects\final_project\data\sample\transactions.parquet', 'api_data')
+        r'C:\Users\Administrator\PycharmProjects\final_project\data\sample\transactions.parquet')
 
     # Display data lake info
     lake_info = data_lake.get_bucket_info()

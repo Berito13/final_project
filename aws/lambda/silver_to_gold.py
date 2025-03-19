@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     try:
         # Get bucket name and file path from the event
         bucket_name = event.get('bucket_name', 'final-project')
-        file_path = event.get('file_path', 'processed/structured/transactions_processed.parquet')
+        file_path = event.get('file_path', 'transactions_processed.parquet')
 
         # Step 1: Download the processed Parquet file from the Silver bucket
         print(f"Downloading file from S3 bucket: {bucket_name}-silver-bucket/{file_path}")
@@ -31,7 +31,7 @@ def lambda_handler(event, context):
             raw_data['total_amount'] = raw_data['amount'] * 1.1  # Example of a simple transformation
 
         # Step 3: Create Gold bucket key
-        gold_key = f"aggregated/business_ready/{file_path.split('/')[-1].replace('_processed', '_gold')}"
+        gold_key = f"{file_path.split('/')[-1].replace('_processed', '_gold')}"
 
         # Step 4: Convert to Parquet format
         table = pa.Table.from_pandas(raw_data)
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     # Example event data simulating the trigger event in Lambda
     event = {
         'bucket_name': 'final-project',  # Your actual bucket name without "-gold"
-        'file_path': 'processed/structured/transactions_processed.parquet'  # Sample file path from the Silver bucket
+        'file_path': 'transactions_processed.parquet'  # Sample file path from the Silver bucket
     }
     # context can be simulated as None for local testing
     context = None
