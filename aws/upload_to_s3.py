@@ -115,7 +115,7 @@ class S3DataLake:
         """Upload sample data to bronze layer"""
         try:
             current_date = datetime.now().strftime("%Y-%m-%d")
-            bronze_key = f"raw/{source_type}/{current_date}/{os.path.basename(local_file_path)}"
+            bronze_key = f"raw/{source_type}/{os.path.basename(local_file_path)}"
             self.s3_client.upload_file(local_file_path, self.bronze_bucket, bronze_key)
             logger.info(f"Uploaded {local_file_path} to s3://{self.bronze_bucket}/{bronze_key}")
             return bronze_key
