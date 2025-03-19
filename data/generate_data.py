@@ -68,7 +68,7 @@ def generate_data(num_customers=10000, num_transactions=30000):
         ("transaction_type", pa.string())
     ])
 
-    # 4. მონაცემების ჩაწერა Parquet-ში სწორ მონაცემთა ტიპებით
+    # 4. მონაცემების ჩაწერა Parquet-ში სწორი მონაცემთა ტიპებით
     pq.write_table(pa.Table.from_pandas(customers_df, schema=customers_schema), os.path.join(output_dir, "customers.parquet"))
     pq.write_table(pa.Table.from_pandas(transaction_type_df, schema=transaction_types_schema), os.path.join(output_dir, "transaction_types.parquet"))
     pq.write_table(pa.Table.from_pandas(transactions_df, schema=transactions_schema), os.path.join(output_dir, "transactions.parquet"))
