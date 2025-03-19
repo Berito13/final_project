@@ -35,13 +35,20 @@ resource "aws_iam_policy" "s3_access_policy" {
           "s3:ListBucket",
           "s3:DeleteObject"
         ]
-        Effect = "Allow"
-        Resource = [
-          "arn:aws:s3:::${var.source_bucket}",
-          "arn:aws:s3:::${var.source_bucket}/*",
-          "arn:aws:s3:::${var.destination_bucket}",
-          "arn:aws:s3:::${var.destination_bucket}/*"
+        Effect   = "Allow"
+        Resource = flatten([
+          for bucket in var.s3_bucket_names : [
+            "arn:aws:s3:::${bucket}",
+            "arn:aws:s3:::${bucket}/*"
+          ]
+        ])
+      },
+      {
+        Action = [
+          "s3:PutObject"
         ]
+        Effect   = "Allow"
+        Resource = "arn:aws:s3:::${var.s3_bucket_names[2]}/*"  # gold bucket
       }
     ]
   })

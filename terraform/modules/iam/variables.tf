@@ -11,6 +11,11 @@ variable "destination_bucket" {
   type        = string
   default     = "final-project-silver-bucket"
 }
+variable "s3_bucket_names" {
+  description = "S3 bucket-ების სახელების სია"
+  type        = list(string)
+  default     = ["final-project-bronze-bucket", "final-project-silver-bucket", "final-project-gold-bucket"]
+}
 
 variable "tags" {
   description = "Tags for IAM resources"

@@ -122,11 +122,11 @@ def main():
     project_name = "final-project"
     data_lake = S3DataLake(project_name)
 
-    # # Create buckets
-    # data_lake.create_buckets()
-    #
-    # # Create folder structure
-    # data_lake.create_folder_structure()
+    # Create buckets
+    data_lake.create_buckets()
+
+    # Create folder structure
+    data_lake.create_folder_structure()
 
     # Upload the sample file
     data_lake.upload_sample_data(
