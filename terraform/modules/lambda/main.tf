@@ -17,7 +17,7 @@ resource "aws_lambda_function" "lambda" {
   runtime          = "python3.9"
   timeout          = 60
   memory_size      = 128
-
+  layers = [var.pandas_layer_arn]
   environment {
     variables = {
       SOURCE_BUCKET      = var.source_bucket

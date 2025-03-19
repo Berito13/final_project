@@ -38,3 +38,9 @@ variable "tags" {
     Owner     = "Lasha"
   }
 }
+
+variable "pandas_layer_arn" {
+  description = "ARN for AWS SDK Pandas Layer for Python 3.9"
+  type        = string
+  default     = "arn:aws:lambda:us-east-1:336392948345:layer:AWSSDKPandas-Python39:28"
+}
